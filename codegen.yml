@@ -1,0 +1,10 @@
+schema:
+  - 'schema/**/*.graphql'
+generates:
+  'src/generated/graphql.ts':
+    # config:
+    #   mappers:
+    #     Contract: ../models#BookModel
+    plugins:
+      - typescript
+      - typescript-resolvers

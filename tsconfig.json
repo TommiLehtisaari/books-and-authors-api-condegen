@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es2020"],
+    "moduleResolution": "node",
+    "target": "es2020",
+    "outDir": "dist",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+  },
+  "include": [
+    "**/src/**/*.ts",
+    "**/tests/**/*.ts",
+    
+    // to make eslint happy.
+    ".eslintrc.js",
+    "jest.config.js",
+    "*.ts",
+  ]
+}
