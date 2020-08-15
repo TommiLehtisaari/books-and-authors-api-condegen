@@ -1,9 +1,18 @@
 import { ApolloServer } from "apollo-server";
 
+import { dataSources, DataSources } from "./dataSources";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./typeDefs";
 
-const server = new ApolloServer({ typeDefs, resolvers });
+export interface Context {
+  dataSources: DataSources;
+}
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources,
+});
 
 server
   .listen()
