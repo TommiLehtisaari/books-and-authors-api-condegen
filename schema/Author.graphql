@@ -5,4 +5,5 @@ type Author {
 
 type Query {
     authors: [Author]
+    author(authorId: ID!): Author
 }

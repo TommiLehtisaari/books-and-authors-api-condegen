@@ -5,6 +5,9 @@ generates:
     # config:
     #   mappers:
     #     Contract: ../models#BookModel
+    config:
+      contextType: ../context#Context
+      useIndexSignature: true
     plugins:
       - typescript
       - typescript-resolvers
