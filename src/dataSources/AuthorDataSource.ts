@@ -1,4 +1,5 @@
 import { DataSource } from "apollo-datasource";
+import { v4 as uuidv4 } from "uuid";
 
 import { Author } from "../generated/graphql";
 import { AuthorModel } from "../models";
@@ -16,6 +17,10 @@ const authors = [
     id: "1B8B13F5-6EBD-4085-9261-3B2C668418B3",
     name: "J.R.R. Tolkien",
   },
+  {
+    id: "F16DB7DC-77BE-4987-B302-56FE9DB8B462",
+    name: "Thomas Piketty",
+  },
 ];
 
 export class AuthorDataSource extends DataSource {
@@ -29,6 +34,13 @@ export class AuthorDataSource extends DataSource {
     if (!author) {
       return null;
     }
+
+    return author;
+  };
+
+  public createAuthor = (params: { name: string }): AuthorModel => {
+    const author = { id: uuidv4(), name: params.name };
+    console.log(author);
 
     return author;
   };
