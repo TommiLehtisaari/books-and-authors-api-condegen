@@ -61,6 +61,8 @@ export class BookDataSource extends DataSource {
     authorId: string;
   }): BookModel => {
     const book = { id: uuidv4(), title: params.title, author: params.authorId };
+    books.push(book);
+
     return book;
   };
 }
