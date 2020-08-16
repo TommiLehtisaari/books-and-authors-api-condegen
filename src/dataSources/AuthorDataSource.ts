@@ -40,7 +40,7 @@ export class AuthorDataSource extends DataSource {
 
   public createAuthor = (params: { name: string }): AuthorModel => {
     const author = { id: uuidv4(), name: params.name };
-    console.log(author);
+    authors.push(author);
 
     return author;
   };
