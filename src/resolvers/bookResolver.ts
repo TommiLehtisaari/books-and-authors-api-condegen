@@ -7,4 +7,8 @@ export const bookResolver: Resolvers = {
     book: (_, { bookId }, { dataSources }) =>
       dataSources.bookDataSource.getBookById({ bookId }),
   },
+  Book: {
+    author: (root, _, { dataSources }) =>
+      dataSources.authorDataSource.getAuthorById({ authorId: root.author }),
+  },
 };

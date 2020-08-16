@@ -1,4 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
+import { BookModel } from '../models';
 import { Context } from '../context';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -40,7 +41,7 @@ export type Book = {
   __typename?: 'Book';
   id: Scalars['ID'];
   title: Scalars['String'];
-  author: Scalars['String'];
+  author?: Maybe<Author>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -126,7 +127,7 @@ export type ResolversTypes = ResolversObject<{
   ID: ResolverTypeWrapper<Scalars['ID']>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Query: ResolverTypeWrapper<{}>;
-  Book: ResolverTypeWrapper<Book>;
+  Book: ResolverTypeWrapper<BookModel>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
@@ -136,7 +137,7 @@ export type ResolversParentTypes = ResolversObject<{
   ID: Scalars['ID'];
   String: Scalars['String'];
   Query: {};
-  Book: Book;
+  Book: BookModel;
   Boolean: Scalars['Boolean'];
 }>;
 
@@ -156,7 +157,7 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
 export type BookResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 }>;
 
