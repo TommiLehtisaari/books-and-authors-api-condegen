@@ -12,4 +12,8 @@ export const authorResolver: Resolvers = {
     books: (root, _, { dataSources }) =>
       dataSources.bookDataSource.getBookByAuthor({ authorId: root.id }),
   },
+  Mutation: {
+    createAuthor: (_, { name }, { dataSources }) =>
+      dataSources.authorDataSource.createAuthor({ name }),
+  },
 };

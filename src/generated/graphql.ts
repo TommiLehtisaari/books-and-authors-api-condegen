@@ -39,6 +39,16 @@ export type QueryBookArgs = {
   bookId: Scalars['ID'];
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  createAuthor?: Maybe<Author>;
+};
+
+
+export type MutationCreateAuthorArgs = {
+  name: Scalars['String'];
+};
+
 export type Book = {
   __typename?: 'Book';
   id: Scalars['ID'];
@@ -129,6 +139,7 @@ export type ResolversTypes = ResolversObject<{
   ID: ResolverTypeWrapper<Scalars['ID']>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Query: ResolverTypeWrapper<{}>;
+  Mutation: ResolverTypeWrapper<{}>;
   Book: ResolverTypeWrapper<BookModel>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
@@ -139,6 +150,7 @@ export type ResolversParentTypes = ResolversObject<{
   ID: Scalars['ID'];
   String: Scalars['String'];
   Query: {};
+  Mutation: {};
   Book: BookModel;
   Boolean: Scalars['Boolean'];
 }>;
@@ -157,6 +169,10 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
   books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
 }>;
 
+export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  createAuthor?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType, RequireFields<MutationCreateAuthorArgs, 'name'>>;
+}>;
+
 export type BookResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -167,6 +183,7 @@ export type BookResolvers<ContextType = Context, ParentType extends ResolversPar
 export type Resolvers<ContextType = Context> = ResolversObject<{
   Author?: AuthorResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Book?: BookResolvers<ContextType>;
 }>;
 
