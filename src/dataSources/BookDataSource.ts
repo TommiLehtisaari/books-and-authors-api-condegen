@@ -1,4 +1,5 @@
 import { DataSource } from "apollo-datasource";
+import { v4 as uuidv4 } from "uuid";
 
 import { BookModel } from "../models";
 
@@ -53,5 +54,15 @@ export class BookDataSource extends DataSource {
     }
 
     return listOfBooks;
+  };
+
+  public createBook = (params: {
+    title: string;
+    authorId: string;
+  }): BookModel => {
+    const book = { id: uuidv4(), title: params.title, author: params.authorId };
+    books.push(book);
+
+    return book;
   };
 }

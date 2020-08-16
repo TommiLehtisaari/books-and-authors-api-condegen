@@ -8,3 +8,7 @@ type Query {
   books: [Book]
   book(bookId: ID!): Book
 }
+
+type Mutation {
+  createBook(authorId: String!, title: String!): Book
+}
