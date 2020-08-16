@@ -1,30 +1,30 @@
 import { DataSource } from "apollo-datasource";
 
-import { Book } from "../generated/graphql";
+import { BookModel } from "../models";
 
 const books = [
   {
     id: "36989EF7-1A82-493E-8542-A348F5E027FA",
     title: "Harry Potter and the Chamber of Secrets",
-    author: "J.K. Rowling",
+    author: "E9E2326E-069A-4459-9787-894D76813106",
   },
   {
     id: "4E2651A5-2B93-4CB6-849B-98E17A177E87",
     title: "Jurassic Park",
-    author: "Michael Crichton",
+    author: "84F85031-07BA-4D88-950C-88D80D06C678",
   },
   {
     id: "8B7E84DF-1C6C-4C5A-B46C-8B88ACEBB53E",
     title: "The Hobbit",
-    author: "J.R.R. Tolkien",
+    author: "1B8B13F5-6EBD-4085-9261-3B2C668418B3",
   },
 ];
 
 export class BookDataSource extends DataSource {
-  public getBooks = (): Book[] | null => books;
+  public getBooks = (): BookModel[] | null => books;
 
-  public getBookById = (params: { bookId: string }): Book | null => {
-    const book = books.find((book: Book) => book.id === params.bookId);
+  public getBookById = (params: { bookId: string }): BookModel | null => {
+    const book = books.find((book) => book.id === params.bookId);
 
     if (!book) {
       return null;

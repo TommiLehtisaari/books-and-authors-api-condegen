@@ -2,10 +2,9 @@ schema:
   - 'schema/**/*.graphql'
 generates:
   'src/generated/graphql.ts':
-    # config:
-    #   mappers:
-    #     Contract: ../models#BookModel
     config:
+      mappers:
+        Book: ../models#BookModel
       contextType: ../context#Context
       useIndexSignature: true
     plugins:
