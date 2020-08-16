@@ -3,3 +3,8 @@ export interface BookModel {
   title: string;
   author: string;
 }
+
+export interface AuthorModel {
+  id: string;
+  name: string;
+}

@@ -1,6 +1,7 @@
 import { DataSource } from "apollo-datasource";
 
 import { Author } from "../generated/graphql";
+import { AuthorModel } from "../models";
 
 const authors = [
   {
@@ -18,9 +19,9 @@ const authors = [
 ];
 
 export class AuthorDataSource extends DataSource {
-  public getAuthors = (): Author[] | null => authors;
+  public getAuthors = (): AuthorModel[] | null => authors;
 
-  public getAuthorById = (params: { authorId: string }): Author | null => {
+  public getAuthorById = (params: { authorId: string }): AuthorModel | null => {
     const author = authors.find(
       (author: Author) => author.id === params.authorId,
     );
