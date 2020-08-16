@@ -3,6 +3,7 @@ import { BookModel } from '../models';
 import { Context } from '../context';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -17,6 +18,7 @@ export type Author = {
   __typename?: 'Author';
   id: Scalars['ID'];
   name: Scalars['String'];
+  books?: Maybe<Array<Maybe<Book>>>;
 };
 
 export type Query = {
@@ -123,7 +125,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  Author: ResolverTypeWrapper<Author>;
+  Author: ResolverTypeWrapper<Omit<Author, 'books'> & { books?: Maybe<Array<Maybe<ResolversTypes['Book']>>> }>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Query: ResolverTypeWrapper<{}>;
@@ -133,7 +135,7 @@ export type ResolversTypes = ResolversObject<{
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-  Author: Author;
+  Author: Omit<Author, 'books'> & { books?: Maybe<Array<Maybe<ResolversParentTypes['Book']>>> };
   ID: Scalars['ID'];
   String: Scalars['String'];
   Query: {};
@@ -144,6 +146,7 @@ export type ResolversParentTypes = ResolversObject<{
 export type AuthorResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 }>;
 

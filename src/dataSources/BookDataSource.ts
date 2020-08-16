@@ -18,6 +18,16 @@ const books = [
     title: "The Hobbit",
     author: "1B8B13F5-6EBD-4085-9261-3B2C668418B3",
   },
+  {
+    id: "F45210B1-26C8-47FF-BF43-54175CA25BAA",
+    title: "The Lord of The Rings",
+    author: "1B8B13F5-6EBD-4085-9261-3B2C668418B3",
+  },
+  {
+    id: "11504DAB-4EEC-4D89-937B-2AD4732C5615",
+    title: "Silmarillion",
+    author: "1B8B13F5-6EBD-4085-9261-3B2C668418B3",
+  },
 ];
 
 export class BookDataSource extends DataSource {
@@ -31,5 +41,17 @@ export class BookDataSource extends DataSource {
     }
 
     return book;
+  };
+
+  public getBookByAuthor = (params: {
+    authorId: string;
+  }): BookModel[] | null => {
+    const listOfBooks = books.filter((book) => book.author === params.authorId);
+
+    if (!listOfBooks) {
+      return null;
+    }
+
+    return listOfBooks;
   };
 }

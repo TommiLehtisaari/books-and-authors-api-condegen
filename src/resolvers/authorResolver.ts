@@ -8,4 +8,8 @@ export const authorResolver: Resolvers = {
     author: (_, { authorId }, { dataSources }) =>
       dataSources.authorDataSource.getAuthorById({ authorId }),
   },
+  Author: {
+    books: (root, _, { dataSources }) =>
+      dataSources.bookDataSource.getBookByAuthor({ authorId: root.id }),
+  },
 };
